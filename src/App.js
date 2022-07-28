@@ -1,56 +1,75 @@
 import logo from './logo.svg';
 import './App.css';
-import EmployeeList from './components/EmployeeList';
-import NewEmployee from './components/NewEmployee'
-import React, {useState} from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-
-
+import Table from './Table';
+import { useState } from 'react';
+import NewEmployee from './NewEmployee';
+import ModalUpdate from './ModalUpdate';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import image2 from './assets/image2.jpg'
+import { Card } from 'react-bootstrap';
 function App() {
-
-  const [employees,setEmployees] = useState([
-    {name: "Themba",surname: "Mqala", email:"2pac@saps.co.za"},
-    {name: "Themba",surname: "nqala", email:"3pac@saps.co.za"},
-    {name: "Themba",surname: "Pqala", email:"2pac@saps.co.za"}
-    
+  const [characters, setCharacters] = useState([
+    { name: 'Taylor', email: 'taylor@mail.com' },
+    { name: 'Alice', email: 'alice@mail.com' },
+    { name: 'Bob', email: 'bob@mail.com' }
   ]);
 
-  const removeEmployees = index => {
-    setEmployees([
-      ...employees.slice(0, index),
-      ...employees.slice(index +1 , employees.length)
-    ])
+  // const removeCharacter = index => {
+
+  //   setCharacters([
+  //     ...characters.slice(0, index),
+  //     ...characters.slice(index + 1, characters.length)
+  //   ]);
+
+  // }
+        
+  const handleSubmit = character => {
+    console.log(character);
+    setCharacters([
+      ...characters,
+      {
+        name: character.name,
+        email: character.email
+      }
+    ]);
   }
-
-  const updateEmployee = index => {
-      console.log(index)
-  }
-
-
-  const submitNewEmployee = (NewEmployee) => {
-
-  }
-
   
+  // const update = (employee, index, handleClose) => {
+  //   setCharacters([
+  //     ...characters.slice(0, index),
+  //     employee,
+  //     ...characters.slice(index + 1, characters.length)
+  //   ]);
+  //   handleClose()
+  // }
+ 
   return (
-    <Container>
+    <div >
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Employee Portal
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Grid container  spacing={2} >
+        <Grid  item xs={6} md={4}  style={{display: 'flex', width:'100%'}}>
+        {/* <label>Employees</label> */}
+          <NewEmployee handleSubmit={handleSubmit}></NewEmployee>
+        </Grid >
+        <Grid  item xs={6} md={8} style={{marginTop:'40px'}}>
+         <label>Emdployees</label>
+       <Table  employeeList={characters} ></Table>
 
-      <div className="App">
-        <NewEmployee submitNewEmployee={submitNewEmployee}/>
-        <EmployeeList employeeList={employees} deleteEmployee={removeEmployees} updateEmployee={updateEmployee} />
-      </div>
+     </Grid>
 
-    </Container>
-    
+      </Grid>
+
+    </div>
+
   );
 }
 
