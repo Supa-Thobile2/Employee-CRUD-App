@@ -5,13 +5,14 @@ import { useState } from "react";
 const NewEmployee = props =>{
 
     const [employee, setEmployee] = useState({
-        email:'fff',
-        name:'eee'
+        email:'',
+        name:''
     });
 
     const add = event =>{
         event.preventDefault();
-        props.submitEmployee(employee)
+        props.submitNewEmployee(employee);
+        setEmployee({name:'', email: ''})
     };
 
     

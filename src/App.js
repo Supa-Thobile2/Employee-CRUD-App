@@ -1,4 +1,5 @@
 import { useState } from "react";
+import EmployeeList from "./components/EmployeeList";
 
 import NewEmployee from "./components/NewEmployee";
 
@@ -9,9 +10,7 @@ import NewEmployee from "./components/NewEmployee";
 function App(){
 
   const [employees, setEmployees] = useState([
-    {name: 'james', email: 'james21@gmail.com'},
-    {name: 'james', email: 'james21@gmail.com'},
-    {name: 'james', email: 'james21@gmail.com'}
+   
 
   ]);
 
@@ -34,13 +33,21 @@ function App(){
 
 
   const submitNewEmployee = (newEmployee) =>{
-    console.log(newEmployee)
+    // console.log(newEmployee)
+    setEmployees([
+      ...employees,
+      {
+        name: newEmployee.name,
+        email: newEmployee.email
+      }
+    ])
     
   }
   return(
     <div>
       
       <NewEmployee submitNewEmployee={submitNewEmployee}/>
+      <EmployeeList employeeList={employees}/>
 
     </div>
   )
