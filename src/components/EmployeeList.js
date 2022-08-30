@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-function EmployeeList(){
+
 
     
 const TableHeader = () =>{
@@ -21,16 +21,17 @@ const TableHeader = () =>{
     )
 }
     
-};
+
 
 
 const TableBody = props =>{
-    const rows = props.employeeList.map((row)=>{
+    const rows = props.employeeList.map((row, index)=>{
         return(
             <tr>
                 <td>{row.name}</td>
                 <td>{row.email}</td>
-                <td><button>Delete</button></td>
+                <td><button onClick={()=>props.deleteEmployee(index)}>Delete</button></td>
+                <td><button onClick={()=>props.updateEmployee(index)}>Update</button></td>
             </tr>
             
         );
@@ -40,19 +41,23 @@ const TableBody = props =>{
 
 };
 
+const EmployeeList = (props)=>{
+
+    const {employeeList, removeEmployee} = props;
+        return(
+            <div>
+                <table>
+                    <TableHeader></TableHeader>
+                    <TableBody employeeList={employeeList} deleteEmployee={removeEmployee}></TableBody>
+                </table>
+                
+            </div>
+            
+        )
+
+}
 
 
-// const {EmployeeList} = props;
-// return(
-//     <div>
-//         <table>
-//             <TableHeader></TableHeader>
-//             <TableBody EmployeeList={EmployeeList}></TableBody>
-//         </table>
-        
-//     </div>
-    
-// )
 
 
 

@@ -47,7 +47,7 @@ function App(){
     <div>
       
       <NewEmployee submitNewEmployee={submitNewEmployee}/>
-      <EmployeeList employeeList={employees}/>
+      <EmployeeList employeeList={employees} removeEmployee={removeEmployee} updateEmployee={updateEmployee}/>
 
     </div>
   )
