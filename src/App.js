@@ -3,6 +3,10 @@ import EmployeeList from "./components/EmployeeList";
 
 import NewEmployee from "./components/NewEmployee";
 
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
 
 
 
@@ -44,12 +48,31 @@ function App(){
     
   }
   return(
-    <div>
-      
-      <NewEmployee submitNewEmployee={submitNewEmployee}/>
-      <EmployeeList employeeList={employees} removeEmployee={removeEmployee} updateEmployee={updateEmployee}/>
+          <div>
 
-    </div>
+          <Grid container spacing={2}>
+                  <Grid item xs={4}>
+                    <EmployeeList employeeList={employees} removeEmployee={removeEmployee} updateEmployee={updateEmployee}/>
+                  </Grid>
+                      
+                  <Grid item xs={8}>
+
+                    <NewEmployee submitNewEmployee={submitNewEmployee}/>
+                    
+                  </Grid>
+                  
+                  
+                </Grid>
+
+          </div>
+
+
+    // <div>
+      
+    //   
+    //   
+
+    // </div>
   )
 }
 
